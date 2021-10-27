@@ -1,4 +1,4 @@
-#AlexNet-inspired discriminator adapted from https://github.com/pytorch/vision/blob/master/torchvision/models/alexnet.py
+# AlexNet-inspired discriminator adapted from https://github.com/pytorch/vision/blob/master/torchvision/models/alexnet.py
 
 class Discriminator(torch.nn.Module):
 
