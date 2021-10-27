@@ -54,7 +54,7 @@ class Generator(torch.nn.Module):
         )
 
     def forward(self, inputs, condition):
-        # Concatenate Noise and Condition
+        # Concatenate noise and condition
         cat_inputs = torch.cat((inputs, condition), dim=1)
         
         # Reshape the input vector into a feature map.
