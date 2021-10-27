@@ -5,7 +5,6 @@ class Discriminator(torch.nn.Module):
         super(Discriminator, self).__init__()
 
         self.main = torch.nn.Sequential(
-        
             
             torch.nn.Conv2d(
                 in_channels= 1,
