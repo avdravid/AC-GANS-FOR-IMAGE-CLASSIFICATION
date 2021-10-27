@@ -5,83 +5,77 @@ class Generator(torch.nn.Module):
         super(Generator, self).__init__()
 
         self.main = torch.nn.Sequential(
-            # input is Z, going into a convolution
+         
             torch.nn.ConvTranspose2d(
-                in_channels=nz + nl,
-                out_channels=ngf * 16,
+                in_channels=nz + nl,  #noise vector dimensionality + number of classes (2)
+                out_channels= 64 * 16,
                 kernel_size= 4,
                 stride=1,
                 padding=0,
                 bias=False
             ),
             torch.nn.BatchNorm2d(
-                num_features=ngf * 16
+                num_features=64 * 16
             ),
             torch.nn.ReLU(
                 inplace=True
             ),
 
-            # state size. (ngf*8) x 4 x 4
             torch.nn.ConvTranspose2d(
-                in_channels=ngf * 16,
-                out_channels=ngf * 8,
+                in_channels=64 * 16,
+                out_channels=64 * 8,
                 kernel_size=4,
                 stride=2,
                 padding=1,
                 bias=False
             ),
             torch.nn.BatchNorm2d(
-                num_features=ngf * 8
+                num_features=64 * 8
             ),
             torch.nn.ReLU(
                 inplace=True
             ),
 
-            # state size. (ngf*4) x 8 x 8
             torch.nn.ConvTranspose2d(
-                in_channels=ngf * 8,
-                out_channels=ngf * 4,
+                in_channels=64 * 8,
+                out_channels=64 * 4,
                 kernel_size=4,
                 stride=2,
                 padding=1,
                 bias=False
             ),
             torch.nn.BatchNorm2d(
-                num_features=ngf * 4
+                num_features=64 * 4
             ),
             torch.nn.ReLU(
                 inplace=True
             ),
 
-            # state size. (ngf*2) x 16 x 16
-           
-
-            
            torch.nn.ConvTranspose2d(
-                in_channels=ngf * 4,
-                out_channels=ngf*2,
+                in_channels=64 * 4,
+                out_channels=64*2,
                 kernel_size=4,
                 stride=2,
                 padding=1,
                 bias=False
             ),
             torch.nn.BatchNorm2d(
-                num_features=ngf*2
+                num_features=64*2
             ),
             torch.nn.ReLU(
                 inplace=True
             ),
             
              torch.nn.ConvTranspose2d(
-                in_channels=ngf*2,
-                out_channels=ngf,
+                in_channels=64*2,
+                out_channels=64,
                 kernel_size=4,
                 stride=2,
                 padding=1,
                 bias=False
             ),
             torch.nn.BatchNorm2d(
-                num_features=ngf
+                num_features=64
             ),
             torch.nn.ReLU(
                 inplace=True
@@ -89,15 +83,15 @@ class Generator(torch.nn.Module):
             
             
             torch.nn.ConvTranspose2d(
-                in_channels=ngf,
-                out_channels=nc,
+                in_channels=64,
+                out_channels=3,
                 kernel_size=4,
                 stride=2,
                 padding=1,
                 bias=False
             ),
             torch.nn.Tanh()
-            # state size. (nc) x 128 x 128
+ 
         )
 
     def forward(self, inputs, condition):
