@@ -1,4 +1,4 @@
-#AlexNet from https://github.com/pytorch/vision/blob/master/torchvision/models/alexnet.py
+# AlexNet from https://github.com/pytorch/vision/blob/master/torchvision/models/alexnet.py
 
 
 class Discriminator(torch.nn.Module):
@@ -30,7 +30,6 @@ class Discriminator(torch.nn.Module):
             nn.Linear(4096, nl),
             nn.Softmax()
         )
-
     def forward(self, x):
         x = self.features(x)
         x = x.contiguous().view(x.size(0), 256 * 2 * 2)
