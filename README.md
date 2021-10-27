@@ -1,6 +1,6 @@
 # AC-GANS For Image Classification
 These are the architectures for the AC-GAN and baseline models that we constructed for the manuscript "Investigating the Potential of Auxiliary-Classifier GANs for Image Classification in Low Data Regimes."
-AlexNet was used for the CIFAR10 experiments, and another standard CNN model was used for the Fashion-MNIST and COVID-19 tests. The discriminators of the AC-GANs are based off these corresponding classifier networks. 
+AlexNet was used for the CIFAR10 experiments, and another standard CNN model was used for the Fashion-MNIST and COVID-19 tests. The discriminators of the AC-GANs are based off of these corresponding classifier networks. 
 
 
 Almost all the hyperparameters were shared between the trained CNNs and AC-GANs for all experiments. All convolutional and transpose convolutional parameters were initialized from a normal distribution <img src="https://render.githubusercontent.com/render/math?math=\mathcal{N}(1, 0.02)">. Batch normalization layers were initialized with <img src="https://render.githubusercontent.com/render/math?math=\gamma, \beta"> from <img src="https://render.githubusercontent.com/render/math?math=\mathcal{N}(1, 0.02)"> and biases as a constant 0. All other weight parameters were initialized as per default PyTorch initialization.
