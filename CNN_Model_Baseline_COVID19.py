@@ -6,11 +6,10 @@ class Classifier(torch.nn.Module):
 
         self.main = torch.nn.Sequential(
         
-            
             torch.nn.Conv2d(
                 in_channels= 3,
-                out_channels=64 * 2,
-                kernel_size=4,
+                out_channels= 64 * 2,
+                kernel_size= 4,
                 stride=2,
                 padding=1,
                 bias=False
@@ -25,7 +24,7 @@ class Classifier(torch.nn.Module):
 
             
             torch.nn.Conv2d(
-                in_channels=64 * 2,
+                in_channels= 64 * 2,
                 out_channels=64 * 4,
                 kernel_size=4,
                 stride=2,
@@ -40,7 +39,6 @@ class Classifier(torch.nn.Module):
                 inplace=True
             ),
 
-            # state size. (ndf*4) x 7 x 7
             torch.nn.Conv2d(
                 in_channels=64 * 4,
                 out_channels=64 * 8,
