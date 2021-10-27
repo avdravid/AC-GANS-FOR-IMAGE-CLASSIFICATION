@@ -5,52 +5,48 @@ class Discriminator(torch.nn.Module):
         super(Discriminator, self).__init__()
 
         self.main = torch.nn.Sequential(
-        
-            # state size. (3) x 128 x 128
             torch.nn.Conv2d(
                 in_channels= 3,
-                out_channels=ndf * 2,
+                out_channels= 64 * 2,
                 kernel_size=4,
                 stride=2,
                 padding=1,
                 bias=False
             ),
             torch.nn.BatchNorm2d(
-                num_features=ndf * 2
+                num_features=64* 2
             ),
             torch.nn.LeakyReLU(
                 negative_slope=0.2,
                 inplace=True
             ),
 
-            # state size. (ndf*2) x 14 x 14
             torch.nn.Conv2d(
-                in_channels=ndf * 2,
-                out_channels=ndf * 4,
+                in_channels=64 * 2,
+                out_channels=64 * 4,
                 kernel_size=4,
                 stride=2,
                 padding=1,
                 bias=False
             ),
             torch.nn.BatchNorm2d(
-                num_features=ndf * 4
+                num_features=64 * 4
             ),
             torch.nn.LeakyReLU(
                 negative_slope=0.2,
                 inplace=True
             ),
 
-            # state size. (ndf*4) x 7 x 7
             torch.nn.Conv2d(
-                in_channels=ndf * 4,
-                out_channels=ndf * 8,
+                in_channels= 64 * 4,
+                out_channels= 64 * 8,
                 kernel_size=4,
                 stride=2,
                 padding=1,
                 bias=False
             ),
             torch.nn.BatchNorm2d(
-                num_features=ndf * 8
+                num_features=64 * 8
             ),
             torch.nn.LeakyReLU(
                 negative_slope=0.2,
@@ -58,13 +54,11 @@ class Discriminator(torch.nn.Module):
             )
         )
             
-            
-        #ndf*8 x 3 *3
         # Categorical Classifier
         self.clf = torch.nn.Sequential(
             torch.nn.Linear(
                 in_features=512*16*16,
-                out_features=nl,
+                out_features = 2,
                 bias=True
             ),
             torch.nn.Softmax(dim=1)
@@ -74,9 +68,8 @@ class Discriminator(torch.nn.Module):
         
         # Real / Fake Classifier
         self.police = torch.nn.Sequential(
-            # state size. (ndf*8) x 4 x 4
             torch.nn.Conv2d(
-                in_channels=ndf * 8,
+                in_channels= 64 * 8,
                 out_channels=1,
                 kernel_size=16,
                 stride=1,
